@@ -53,6 +53,9 @@
         ?>
         </tbody>
     </table>
+    <div class="btnSet">
+        <a href="write.php" class="btnList btn">wirte</a>
+    </div>
 </article>
 </body>
 </html>
