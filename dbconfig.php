@@ -6,4 +6,3 @@
     }
 
     $db->set_charset('utf8');
-?>
