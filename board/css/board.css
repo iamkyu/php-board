@@ -27,3 +27,9 @@
 #boardWrite #bContent {width:550px;height:300px}
 
 #boardWrite .btnSet {text-align:center}
+
+/* 글읽기 */
+
+#boardView #boardTitle {border-bottom: 2px solid #333}
+#boardView #boardInfo {margin: 10px 0}
+#boardView #boardContent {margin: 10px 0}
