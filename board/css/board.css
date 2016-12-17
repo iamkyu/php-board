@@ -1,10 +1,29 @@
-.boardArticle table {width:720px}
+.boardArticle {width:720px}
 
-.boardArticle th {padding:5px 0;border-top:2px solid #666;border-bottom:1px solid #666}
+/* 글목록 */
 
-.boardArticle td {padding:8px 0;border-bottom:1px solid #666}
-.boardArticle .no {width:60px;text-align:center}
-.boardArticle .title {}
-.boardArticle .author {width:100px;text-align:center}
-.boardArticle .date {width:100px;text-align:center}
-.boardArticle .hit {width:40px;text-align:center}
+#boardList table {width:720px}
+
+#boardList th {padding:5px 0;border-top:2px solid #666;border-bottom:1px solid #666}
+#boardList td {padding:8px 0;border-bottom:1px solid #666}
+
+#boardList .no {width:60px;text-align:center}
+#boardList .title {}
+#boardList .author {width:100px;text-align:center}
+#boardList .date {width:100px;text-align:center}
+#boardList .hit {width:40px;text-align:center}
+
+#boardList .btnSet {text-align:right}
+
+/* 글쓰기 */
+
+#boardWrite table {width:720px}
+#boardWrite th {width:100px;padding:5px;text-align:right;vertical-align: top}
+#boardWrite td {width:620px;padding:5px}
+
+#boardWrite #bID {width:180px}
+#boardWrite #bPassword {width:180px}
+#boardWrite #bTitle {width:400px}
+#boardWrite #bContent {width:550px;height:300px}
+
+#boardWrite .btnSet {text-align:center}
