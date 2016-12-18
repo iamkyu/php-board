@@ -1,39 +1,63 @@
 <?php
 require_once("../dbconfig.php");
 
-$id = $_POST["id"];
+if (isset($_POST["id"])) {
+    $id = $_POST["id"];
+} else {
+    $writer = $_POST["writer"];
+    $date = date("Y-m-d H:i:s");
+}
+
 $password = $_POST["password"];
 $title = $_POST["title"];
 $content = $_POST["content"];
-$date = date("Y-m-d H:i:s");
 
-$sql = "insert into board (id, title, content, date, hit, writer, password) 
-    values(null, '$title', '$content', '$date', 0, '$id', password('$password'))";
+if (isset($id)) {
+    $sql = "select count(password) as cnt from board where password = password('$password') and id = '$id'";
+    $result = $db->query($sql);
+    $row = $result->fetch_assoc();
 
-$result = $db->query($sql);
-$msg;
-if ($result)
-{
-    $msg = "success";
-    $insertId = $db->insert_id;
-    $replaceURL = './view.php?id=' . $insertId;
+    if ($row["cnt"]) {
+        $sql = "update board set title = '$title', content = '$content' where id = '$id'";
+        $msgState = "edite";
+    } else {
+        $msg = "password do not match";
+        ?>
+        <script>
+            alert("<?php echo $msg?>");
+            history.go(-1);
+        </script>
+        <?php
+        exit;
+    }
+} else {
+    $sql = "insert into board (id, title, content, date, hit, writer, password) 
+    values(null, '$title', '$content', '$date', 0, '$writer', password('$password'))";
+    $msgState = "create";
 }
-else
-{
-    $msg = "fail";
+
+if (empty($msg)) {
+    $result = $db->query($sql);
+
+    if ($result) {
+        $msg = $msgState. "d";
+        if (empty($id)) {
+            $id = $db->insert_id;
+        }
+        $replaceURL = './view.php?id=' . $id;
+    } else {
+        $msg = $msgState . " failed";
+        ?>
+        <script>
+            alert("<?php echo $msg?>");
+            history.go(-1);
+        </script>
+        <?php
+        exit;
+    }
+}
 ?>
 
 <script>
-    alert("<?php echo $msg?>");
-    debugger;
-    history.go(-1);
-</script>
-
-<?php
-}
-?>
-
-<script>
-    alert("<?php echo $msg?>");
     location.replace("<?php echo $replaceURL?>");
 </script>

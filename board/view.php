@@ -26,6 +26,11 @@ $row = $result->fetch_assoc();
         </div>
         <div id="boardContent"><?php echo $row["content"]?></div>
     </div>
+    <div class="btnSet">
+        <a href="./write.php?id=<?php echo $id?>">수정</a>
+        <a href="./delete.php">삭제</a>
+        <a href="./">목록</a>
+    </div>
 </article>
 </body>
 </html>

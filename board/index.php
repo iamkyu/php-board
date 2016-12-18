@@ -43,7 +43,7 @@
             ?>
             <tr>
                 <td class="no"><?php echo $row['id']?></td>
-                <td class="title"><?php echo $row['title']?></td>
+                <td class="title"><a href="./view.php?id=<?php echo $row['id'] ?>"><?php echo $row['title']?></a></td>
                 <td class="author"><?php echo $row['writer']?></td>
                 <td class="date"><?php echo $row['date']?></td>
                 <td class="hit"><?php echo $row['hit']?></td>
