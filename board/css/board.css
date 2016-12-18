@@ -33,3 +33,12 @@
 #boardView #boardTitle {border-bottom: 2px solid #333}
 #boardView #boardInfo {margin: 10px 0}
 #boardView #boardContent {margin: 10px 0}
+#boardView .btnSet {text-align:right}
+
+/* 글삭제 */
+
+
+#boardDelete table {width:720px}
+#boardDelete tbody th {width:100px;padding:5px;text-align:right;vertical-align: top}
+#boardDelete tbody td {width:620px;padding:5px}
+#boardDelete .btnSet {text-align:center}
