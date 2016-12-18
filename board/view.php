@@ -2,6 +2,23 @@
 require_once("../dbconfig.php");
 
 $id = $_GET["id"];
+
+$isHit = !empty($id) && empty($_COOKIE["board_" . $id]);
+if ($isHit) {
+    $sql = "update board set hit = hit+1 where id =" . $id;
+    $result = $db->query($sql);
+    if (empty($result)) {
+    ?>
+        <script>
+            alert("some problem");
+            history.go(-1);
+        </script>
+    <?php
+    } else {
+        setcookie('board_' . $id, TRUE, time() + (60 * 60 * 24), '/');
+    }
+}
+
 $sql = "select id, title, content, date, hit, writer, password from board where id=" . $id;
 $result = $db->query($sql);
 $row = $result->fetch_assoc();
