@@ -10,8 +10,25 @@ if (isset($_GET["page"])) {
 } else {
     $page = 1;
 }
+$searchCategory = "";
+$subString = "";
+if (isset($_GET["searchCategory"])) {
+    $searchCategory = $_GET["searchCategory"];
+    $subString .= '&amp;searchCategory=' . $searchCategory;
+}
 
-$sql = "select count(*) as cnt from board";
+if (isset($_GET["searchText"])) {
+    $searchText = $_GET["searchText"];
+    $subString .= '&amp;searchText=' . $searchText;
+}
+
+$isValidSearchOption = isset($searchCategory) && isset($searchText);
+$searchSql = "";
+if ($isValidSearchOption) {
+    $searchSql = ' where ' . $searchCategory . ' like "%' . $searchText . '%"';
+}
+
+$sql = "select count(*) as cnt from board" . $searchSql;
 $result = $db->query($sql);
 $row = $result->fetch_assoc();
 
@@ -40,33 +57,36 @@ $nextPage = (($currentSection + 1) * ONE_SECTION) - (ONE_SECTION - 1);
 $paging = "<ul>";
 
 if($page != 1) {
-    $paging .= '<li class="page page_start"><a href="./index.php?page=1">first</a></li>';
+    $paging .= '<li class="page page_start"><a href="./index.php?page=1' . $subString . '">first</a></li>';
 }
 if($currentSection != 1) {
-    $paging .= '<li class="page page_prev"><a href="./index.php?page=' . $prevPage . '">prev</a></li>';
+    $paging .= '<li class="page page_prev"><a href="./index.php?page=' . $prevPage . $subString . '">prev</a></li>';
 }
 
 for($i = $firstPage; $i <= $lastPage; $i++) {
     if($i == $page) {
         $paging .= '<li class="page current">' . $i . '</li>';
     } else {
-        $paging .= '<li class="page"><a href="./index.php?page=' . $i . '">' . $i . '</a></li>';
+        $paging .= '<li class="page"><a href="./index.php?page=' . $i . $subString . '">' . $i . '</a></li>';
+
     }
 }
 
 if($currentSection != $allSection) {
-    $paging .= '<li class="page page_next"><a href="./index.php?page=' . $nextPage . '">next</a></li>';
+    $paging .= '<li class="page page_next"><a href="./index.php?page=' . $nextPage . $subString . '">next</a></li>';
+
 }
 
 if($page != $allPage) {
-    $paging .= '<li class="page page_end"><a href="./index.php?page=' . $allPage . '">last</a></li>';
+    $paging .= '<li class="page page_end"><a href="./index.php?page=' . $allPage . $subString . '">last</a></li>';
+
 }
 $paging .= '</ul>';
 
 $currentLimit = (ONE_PAGE_POSTS * $page) - ONE_PAGE_POSTS;
 $sqlLimit = ' limit ' . $currentLimit . ', ' . ONE_PAGE_POSTS;
 
-$sql = 'select * from board order by id' . $sqlLimit;
+$sql = 'select * from board ' . $searchSql . ' order by id desc' . $sqlLimit;
 $result = $db->query($sql);
 ?>
 <!DOCTYPE html>
@@ -121,6 +141,17 @@ $result = $db->query($sql);
     </div>
     <div class="paging">
         <?php echo $paging ?>
+    </div>
+    <div class="searchBox">
+        <form action="./index.php" method="get">
+            <select name="searchCategory">
+                <option <?php echo $searchCategory=='title'?'selected="selected"':null?> value="title">title</option>
+                <option <?php echo $searchCategory=='content'?'selected="selected"':null?> value="content">content</option>
+                <option <?php echo $searchCategory=='writer'?'selected="selected"':null?> value="writer">writer</option>
+            </select>
+            <input type="text" name="searchText" value="<?php echo isset($searchText)?$searchText:null?>">
+            <button type="submit">search</button>
+        </form>
     </div>
     </div>
 </article>
