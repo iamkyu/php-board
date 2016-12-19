@@ -9,6 +9,15 @@ create table board (
 	password varchar(100) not null
 );
 
+create table comment (
+	id int unsigned not null primary key auto_increment,
+	postid int unsigned not null,
+	depth int unsigned not null default 0,
+	content text not null,
+	writer varchar(20) not null,
+	password varchar(100) not null
+);
+
 
 -- SAMPLE DATA
 INSERT INTO `board` (`id`, `title`, `content`, `date`, `hit`, `writer`, `password`)
