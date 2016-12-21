@@ -23,6 +23,8 @@
 #boardList .paging li.current,
 #boardList .paging li:hover a { color: #ddd;}
 
+#boardList .searchBox{text-align: center;}
+
 /* 글쓰기 */
 
 #boardWrite table {width: 720px;}
@@ -43,6 +45,18 @@
 #boardView #boardContent {margin: 10px 0;}
 #boardView .btnSet {text-align: right;}
 
+/* 댓글 쓰기*/
+#boardComment table {width: 100%;}
+#boardComment table th {width: 100px; padding: 0 5px; text-align: right; vertical-align: middle;}
+#boardComment table td {padding: 5px; text-align: left;}
+
+#boardComment #coContent {width: 99%; height: 120px;}
+
+#commentView ul {list-style: none; margin: 0; padding:0;}
+#commentView .oneDepth {margin: 10px 0; padding: 10px; background: #eee;}
+#commentView .twoDepth {margin: 20px; padding: 10px; background: #fff;}
+
+
 /* 글삭제 */
 
 
@@ -50,3 +64,6 @@
 #boardDelete tbody th {width: 100px; padding: 5px; text-align: right; vertical-align: top;}
 #boardDelete tbody td {width: 620px; padding: 5px;}
 #boardDelete .btnSet {text-align: center;}
+
+
+.textCenter {text-align: center;}

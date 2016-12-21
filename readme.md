@@ -8,6 +8,7 @@
 ## Reference
 
 - [PHP Documentation](http://php.net/manual/kr)
+- [Modern PHP|저자 조시 록하트|역자 정병열|한빛미디어 |2015.10.20](http://book.naver.com/bookdb/book_detail.nhn?bid=9685859)
 - [PHP The Right Way](http://modernpug.github.io/php-the-right-way)
 - [PSR](http://www.php-fig.org/psr/)
 - [PHP 게시판 만들기](http://blog.kurien.co.kr/category/Project/PHP%20%EA%B2%8C%EC%8B%9C%ED%8C%90)

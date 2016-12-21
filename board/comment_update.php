@@ -6,11 +6,11 @@ $writer = $_POST["writer"];
 $password = $_POST["password"];
 $content = $_POST["content"];
 
-$sql = 'insert into comment values(null, ' .$id . ', null, "' . $content . '", "' . $writer . '", password("' . $password . '"))';
+$sql = "insert into comment (id, postid, content, writer, password) values (null, " .$id. ", '" .$content. "', '" .$writer. "', password('" .$password. "') )";
 $result = $db->query($sql);
-$id = $db->insert_id;
+$commentId = $db->insert_id;
 
-$sql = 'update comment set depth = id where id = ' . $id;
+$sql = 'update comment set depth = id where id = ' . $commentId;
 $result = $db->query($sql);
 if($result) {
     ?>
