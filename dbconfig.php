@@ -1,4 +1,6 @@
 <?php
+    // FIXME
+    // TODO
     header('Content-Type: text/html; charset=utf-8');
     $db = new mysqli('IP_ADDR', 'id', 'pass', 'database');
 
