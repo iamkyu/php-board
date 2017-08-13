@@ -1,0 +1,11 @@
+# DDL & DML
+*.sql   @onoctober
+
+
+# 데이터베이스 설정
+dbconfig.php @iamkyu
+
+
+# 스크립트
+*.js    @onoctober @iamkyu 
+
